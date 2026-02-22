@@ -212,15 +212,18 @@ export default function App() {
                 </div>
                 <div className="absolute inset-y-1 left-1 right-1">
                   <div 
-                    className={`absolute h-full w-12 md:w-14 bg-white/20 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.6)] z-10 touch-none ${selectedDay ? 'cursor-grab active:cursor-grabbing' : 'cursor-not-allowed'}`}
+                    className={`absolute h-full w-12 md:w-14 bg-white/20 backdrop-blur-xl border border-white/40 rounded-xl flex items-center justify-center shadow-[0_4px_12px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.6)] z-10 touch-none ${selectedDay ? 'cursor-grab active:cursor-grabbing' : 'cursor-not-allowed'} ${isDragging ? 'scale-110 shadow-[0_0_20px_rgba(255,255,255,0.5)]' : ''}`}
                     style={{ 
                       left: `${sliderValue}%`, 
                       transform: `translateX(-${sliderValue}%)`,
-                      transition: isDragging ? 'none' : 'all 300ms ease-out'
+                      transition: isDragging ? 'transform 100ms ease-out, box-shadow 100ms ease-out' : 'all 300ms ease-out'
                     }}
                     onPointerDown={handlePointerDown}
                   >
-                    <ChevronRight className={`text-white transition-transform w-5 h-5 md:w-6 md:h-6 ${isDragging ? 'scale-110' : ''}`} />
+                    {isDragging && (
+                      <div className="absolute inset-0 rounded-xl bg-white/30 animate-ping opacity-75"></div>
+                    )}
+                    <ChevronRight className={`text-white transition-transform w-5 h-5 md:w-6 md:h-6 ${isDragging ? 'scale-125' : ''}`} />
                   </div>
                 </div>
               </div>
