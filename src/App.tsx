@@ -233,8 +233,15 @@ export default function App() {
           {isLoading && (
             <div className="w-full flex flex-col items-center justify-center space-y-6 md:space-y-8">
               <div className="relative">
-                <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                <Loader2 className="w-12 h-12 md:w-16 md:h-16 text-white animate-spin relative z-10" />
+                <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-60 animate-pulse"></div>
+                <div className="relative z-10 w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white/20 shadow-[0_0_30px_rgba(59,130,246,0.6)]">
+                  <img 
+                    src="https://media.giphy.com/media/ne3xrYlWtQFtC/giphy.gif" 
+                    alt="Calculating..." 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               </div>
               <div className="h-16 md:h-20 flex items-center justify-center w-full px-2">
                 <p 
