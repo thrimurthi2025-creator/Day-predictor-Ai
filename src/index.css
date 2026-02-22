@@ -8,27 +8,30 @@
 
 @layer utilities {
   .glass-card {
-    backdrop-filter: blur(24px) saturate(150%);
-    -webkit-backdrop-filter: blur(24px) saturate(150%);
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 
-      0 10px 30px -10px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+      0 30px 60px -10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.1),
+      inset 1px 0 0 0 rgba(255, 255, 255, 0.2),
+      inset -1px 0 0 0 rgba(255, 255, 255, 0.1);
   }
   
   .animate-blob {
-    animation: blob 7s infinite;
+    animation: blob 15s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
   .animation-delay-2000 {
-    animation-delay: 2s;
+    animation-delay: -3s;
   }
   .animation-delay-4000 {
-    animation-delay: 4s;
+    animation-delay: -7s;
   }
   .animation-delay-6000 {
-    animation-delay: 6s;
+    animation-delay: -11s;
   }
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -55,8 +58,8 @@
 
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+  33% { transform: translate(5vw, -5vh) scale(1.1); }
+  66% { transform: translate(-5vw, 5vh) scale(0.9); }
   100% { transform: translate(0px, 0px) scale(1); }
 }
 

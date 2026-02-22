@@ -97,19 +97,19 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0c29] font-sans relative text-white flex flex-col items-center">
+    <div className="min-h-screen bg-black font-sans relative text-white flex flex-col items-center selection:bg-white/30">
       {/* Fixed Background Container to prevent scroll issues */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-[#302b63] via-[#24243e] to-[#0f0c29]">
-        {/* Liquid Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob"></div>
-        <div className="absolute top-[20%] right-[-10%] w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-4000"></div>
-        <div className="absolute top-[40%] left-[40%] w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-[80px] opacity-40 animate-blob animation-delay-6000"></div>
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
+        {/* iOS 26 style Liquid Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-[#ff2a5f] rounded-full mix-blend-screen filter blur-[100px] md:blur-[140px] opacity-80 animate-blob"></div>
+        <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#00f0ff] rounded-full mix-blend-screen filter blur-[100px] md:blur-[140px] opacity-80 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] bg-[#7000ff] rounded-full mix-blend-screen filter blur-[120px] md:blur-[160px] opacity-80 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-[40%] left-[40%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-[#ffaa00] rounded-full mix-blend-screen filter blur-[80px] md:blur-[120px] opacity-70 animate-blob animation-delay-6000"></div>
       </div>
 
       {/* Sticky Header */}
       <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-        <div className="glass-card w-full max-w-4xl rounded-full px-4 md:px-8 py-3 md:py-4 flex items-center justify-between pointer-events-auto transition-all duration-300">
+        <div className="glass-card w-full max-w-4xl rounded-full px-4 md:px-8 py-3 md:py-4 flex items-center justify-between pointer-events-auto transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
           {/* Logo */}
           <div className="font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2 text-white">
             <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-inner text-sm md:text-base">
@@ -150,9 +150,9 @@ export default function App() {
 
         {/* Prediction Applet */}
         <section id="predict" className="w-full flex justify-center px-4">
-          <div className="relative bg-white/10 backdrop-blur-3xl backdrop-saturate-150 border border-white/20 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.1),inset_0_24px_32px_-24px_rgba(255,255,255,0.3)] w-full max-w-md h-[480px] sm:h-[520px] flex flex-col p-6 md:p-8 text-center z-10 overflow-hidden">
+          <div className="relative glass-card rounded-[2.5rem] w-full max-w-md h-[480px] sm:h-[520px] flex flex-col p-6 md:p-8 text-center z-10 overflow-hidden">
           {/* Inner glass highlight */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></div>
           
           <div className="relative z-20 mb-6 md:mb-8 shrink-0">
             <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-3 drop-shadow-md bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">Day Predictor AI</h1>
@@ -317,8 +317,8 @@ export default function App() {
                 icon: "🛰️"
               }
             ].map((tech, i) => (
-              <div key={i} className="group relative bg-white/10 backdrop-blur-3xl backdrop-saturate-150 border border-white/20 rounded-[2rem] p-6 md:p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.1),inset_0_24px_32px_-24px_rgba(255,255,255,0.3)] hover:bg-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_16px_48px_0_rgba(0,0,0,0.4),0_0_30px_rgba(255,255,255,0.1),inset_0_0_0_1px_rgba(255,255,255,0.2)] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"></div>
+              <div key={i} className="group relative glass-card rounded-[2rem] p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.5)] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></div>
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
                   <div className="text-4xl md:text-5xl mb-4 md:mb-6 drop-shadow-lg">{tech.icon}</div>
@@ -333,8 +333,8 @@ export default function App() {
 
       {/* Footer */}
       <footer className="w-full max-w-5xl mx-auto relative z-10 mt-auto mb-6 px-4">
-        <div className="relative bg-white/10 backdrop-blur-3xl backdrop-saturate-150 border border-white/20 rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_0_0_1px_rgba(255,255,255,0.1)] px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 pointer-events-none"></div>
+        <div className="relative glass-card rounded-[2rem] px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10 pointer-events-none"></div>
           
           <div className="relative z-10 flex items-center gap-3 opacity-90">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-sm font-bold shadow-inner">
