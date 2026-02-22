@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  html, body {
+    overflow-x: hidden;
+  }
+}
+
 @layer utilities {
   .glass-card {
     backdrop-filter: blur(24px) saturate(150%);

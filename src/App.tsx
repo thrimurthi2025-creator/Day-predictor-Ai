@@ -93,16 +93,19 @@ export default function App() {
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!selectedDay) return;
     setIsDragging(true);
-    e.preventDefault();
+    // Removed e.preventDefault() to prevent scroll blocking on mobile
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0c29] bg-gradient-to-br from-[#302b63] via-[#24243e] to-[#0f0c29] flex flex-col items-center p-4 font-sans relative overflow-x-hidden text-white">
-      {/* Liquid Orbs (Background) */}
-      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob"></div>
-      <div className="absolute top-[20%] right-[-10%] w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-2000"></div>
-      <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-4000"></div>
-      <div className="absolute top-[40%] left-[40%] w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-[80px] opacity-40 animate-blob animation-delay-6000"></div>
+    <div className="min-h-screen bg-[#0f0c29] font-sans relative text-white flex flex-col items-center">
+      {/* Fixed Background Container to prevent scroll issues */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-gradient-to-br from-[#302b63] via-[#24243e] to-[#0f0c29]">
+        {/* Liquid Orbs */}
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob"></div>
+        <div className="absolute top-[20%] right-[-10%] w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-[100px] opacity-50 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-[40%] left-[40%] w-72 h-72 bg-blue-500 rounded-full mix-blend-screen filter blur-[80px] opacity-40 animate-blob animation-delay-6000"></div>
+      </div>
 
       {/* Sticky Header */}
       <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
