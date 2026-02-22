@@ -97,19 +97,23 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-black font-sans relative text-white flex flex-col items-center selection:bg-white/30">
+    <div className="min-h-screen bg-[#1a1025] font-sans relative text-white flex flex-col items-center selection:bg-white/30">
       {/* Fixed Background Container to prevent scroll issues */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
-        {/* iOS 26 style Liquid Orbs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-[#ff2a5f] rounded-full mix-blend-screen filter blur-[100px] md:blur-[140px] opacity-80 animate-blob"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] max-w-[600px] max-h-[600px] bg-[#00f0ff] rounded-full mix-blend-screen filter blur-[100px] md:blur-[140px] opacity-80 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] bg-[#7000ff] rounded-full mix-blend-screen filter blur-[120px] md:blur-[160px] opacity-80 animate-blob animation-delay-4000"></div>
-        <div className="absolute top-[40%] left-[40%] w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-[#ffaa00] rounded-full mix-blend-screen filter blur-[80px] md:blur-[120px] opacity-70 animate-blob animation-delay-6000"></div>
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#1a1025]">
+        {/* Static Gradient Orbs for Mesh Effect */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-[#e6c894] rounded-full mix-blend-normal filter blur-[100px] md:blur-[140px] opacity-90"></div>
+        <div className="absolute top-[-10%] right-[-20%] w-[80vw] h-[80vw] max-w-[900px] max-h-[900px] bg-[#d9654b] rounded-full mix-blend-normal filter blur-[100px] md:blur-[140px] opacity-90"></div>
+        <div className="absolute top-[20%] left-[10%] w-[100vw] h-[100vw] max-w-[1200px] max-h-[1200px] bg-[#5c3a6b] rounded-full mix-blend-normal filter blur-[120px] md:blur-[160px] opacity-100"></div>
+        <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] max-w-[700px] max-h-[700px] bg-[#d7a393] rounded-full mix-blend-normal filter blur-[100px] md:blur-[140px] opacity-90"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] bg-[#8a5a83] rounded-full mix-blend-normal filter blur-[100px] md:blur-[140px] opacity-90"></div>
+        
+        {/* Noise Overlay */}
+        <div className="absolute inset-0 opacity-[0.4] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
       </div>
 
       {/* Sticky Header */}
       <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-        <div className="glass-card w-full max-w-4xl rounded-full px-4 md:px-8 py-3 md:py-4 flex items-center justify-between pointer-events-auto transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)]">
+        <div className="glass-card w-full max-w-4xl rounded-full px-4 md:px-8 py-3 md:py-4 flex items-center justify-between pointer-events-auto transition-all duration-300">
           {/* Logo */}
           <div className="font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2 text-white">
             <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-inner text-sm md:text-base">
@@ -317,7 +321,7 @@ export default function App() {
                 icon: "🛰️"
               }
             ].map((tech, i) => (
-              <div key={i} className="group relative glass-card rounded-[2rem] p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.5)] overflow-hidden">
+              <div key={i} className="group relative glass-card rounded-[2rem] p-6 md:p-8 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></div>
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/20 rounded-full mix-blend-overlay filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
