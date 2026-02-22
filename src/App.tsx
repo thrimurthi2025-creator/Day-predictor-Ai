@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Loader2, CheckCircle2, ChevronRight, XCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -112,7 +113,12 @@ export default function App() {
       </div>
 
       {/* Sticky Header */}
-      <header className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <motion.header 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-4 md:top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
+      >
         <div className="glass-card w-full max-w-4xl rounded-full px-4 md:px-8 py-3 md:py-4 flex items-center justify-between pointer-events-auto transition-all duration-300">
           {/* Logo */}
           <div className="font-extrabold text-lg md:text-xl tracking-tight flex items-center gap-2 text-white">
@@ -137,23 +143,35 @@ export default function App() {
             </span>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center w-full mt-32 relative z-10 mb-12 max-w-5xl mx-auto space-y-24">
         
         {/* Hero Description */}
-        <section id="about" className="text-center space-y-6 max-w-3xl px-4">
+        <motion.section 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          id="about" 
+          className="text-center space-y-6 max-w-3xl px-4"
+        >
           <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-lg bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
             The Future of <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-400">Chronological Prediction</span>
           </h2>
           <p className="text-lg md:text-xl text-white/80 leading-relaxed drop-shadow-sm">
             Leveraging quantum entanglement, blockchain-backed temporal arrays, and a really big calendar we bought at the dollar store to accurately predict what day comes after today.
           </p>
-        </section>
+        </motion.section>
 
         {/* Prediction Applet */}
-        <section id="predict" className="w-full flex justify-center px-4">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          id="predict" 
+          className="w-full flex justify-center px-4"
+        >
           <div className="relative glass-card rounded-[2.5rem] w-full max-w-md h-[480px] sm:h-[520px] flex flex-col p-6 md:p-8 text-center z-10 overflow-hidden">
           {/* Inner glass highlight */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none"></div>
@@ -166,9 +184,17 @@ export default function App() {
           </div>
 
           <div className="relative z-20 flex-1 flex flex-col justify-center w-full">
-            {!isLoading && !isFinished && (
-              <div className="w-full space-y-6">
-              <p className="text-lg font-medium text-white/90 drop-shadow-sm">Tomorrow is which day?</p>
+            <AnimatePresence mode="wait">
+              {!isLoading && !isFinished && (
+                <motion.div 
+                  key="selection"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-full space-y-6"
+                >
+                <p className="text-lg font-medium text-white/90 drop-shadow-sm">Tomorrow is which day?</p>
               
               <div className="grid grid-cols-2 gap-2 md:gap-3">
                 {DAYS.slice(0, 6).map(day => (
@@ -234,36 +260,55 @@ export default function App() {
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+              </motion.div>
+            )}
 
-          {isLoading && (
-            <div className="w-full flex flex-col items-center justify-center space-y-6 md:space-y-8">
-              <div className="relative">
-                <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                <Loader2 className="w-12 h-12 md:w-16 md:h-16 text-white animate-spin relative z-10" />
-              </div>
-              <div className="h-16 md:h-20 flex items-center justify-center w-full px-2">
-                <p 
-                  key={loadingMessageIndex}
-                  className="text-xl sm:text-2xl md:text-3xl font-bold text-center animate-in zoom-in fade-in duration-500 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-white to-cyan-200"
-                >
-                  {LOADING_MESSAGES[loadingMessageIndex] || LOADING_MESSAGES[LOADING_MESSAGES.length - 1]}
-                </p>
-              </div>
-            </div>
-          )}
+            {isLoading && (
+              <motion.div 
+                key="loading"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+                className="w-full flex flex-col items-center justify-center space-y-6 md:space-y-8"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                  <Loader2 className="w-12 h-12 md:w-16 md:h-16 text-white animate-spin relative z-10" />
+                </div>
+                <div className="h-16 md:h-20 flex items-center justify-center w-full px-2">
+                  <AnimatePresence mode="wait">
+                    <motion.p 
+                      key={loadingMessageIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-xl sm:text-2xl md:text-3xl font-bold text-center drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-white to-cyan-200"
+                    >
+                      {LOADING_MESSAGES[loadingMessageIndex] || LOADING_MESSAGES[LOADING_MESSAGES.length - 1]}
+                    </motion.p>
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
 
           {isFinished && (() => {
             const today = new Date();
             const tomorrow = new Date(today);
             tomorrow.setDate(tomorrow.getDate() + 1);
             const actualTomorrow = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][tomorrow.getDay()];
-            const isCorrect = selectedDay === actualTomorrow;
+              const isCorrect = selectedDay === actualTomorrow;
 
-            return (
-              <div className="w-full flex flex-col items-center justify-center space-y-6 animate-in fade-in zoom-in duration-700">
-                <div className="relative">
+              return (
+                <motion.div 
+                  key="result"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ type: "spring", bounce: 0.4, duration: 0.8 }}
+                  className="w-full flex flex-col items-center justify-center space-y-6"
+                >
+                  <div className="relative">
                   <div className={`absolute inset-0 ${isCorrect ? 'bg-green-500' : 'bg-red-500'} rounded-full blur-xl opacity-50 animate-pulse`}></div>
                   {isCorrect ? (
                     <CheckCircle2 className="w-20 h-20 text-green-400 relative z-10" />
@@ -289,15 +334,23 @@ export default function App() {
                 >
                   Predict Again
                 </button>
-              </div>
+              </motion.div>
             );
           })()}
+          </AnimatePresence>
           </div>
         </div>
-        </section>
+        </motion.section>
 
         {/* Core Technology Section */}
-        <section id="technology" className="w-full px-4 space-y-8 md:space-y-12">
+        <motion.section 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          id="technology" 
+          className="w-full px-4 space-y-8 md:space-y-12"
+        >
           <div className="text-center space-y-4">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">Our "Core Technology"</h3>
             <p className="text-white/70 text-sm sm:text-base max-w-2xl mx-auto px-2">How we achieve 100% accuracy in predicting tomorrow (unless it's a leap year, then we get confused).</p>
@@ -332,11 +385,17 @@ export default function App() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
       </main>
 
       {/* Footer */}
-      <footer className="w-full max-w-5xl mx-auto relative z-10 mt-auto mb-6 px-4">
+      <motion.footer 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-5xl mx-auto relative z-10 mt-auto mb-6 px-4"
+      >
         <div className="relative glass-card rounded-[2rem] px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/10 pointer-events-none"></div>
           
@@ -354,7 +413,7 @@ export default function App() {
             <a href="#/" onClick={(e) => e.preventDefault()} className="hover:text-white transition-colors drop-shadow-sm">Terms of Service</a>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
